@@ -1,4 +1,4 @@
-############################################################################################################
+===============================================================================================================================================================
 az group create -l westus -n hub-RG
 
 az network vnet create -g hub-RG --location eastus -n hubRG-Vnet1 --address-prefix 10.10.0.0/16 \
@@ -13,3 +13,5 @@ az network nsg rule create -g hub-RG  --nsg-name hubRG-NSG  -n hubRG-NSG_rule1 -
 
 az vm create --resource-group hub-RG --name WindowstestVM --image Win2019Datacenter --vnet-name hubRG-Vnet1 --subnet hubRG-subnet1 \
 --admin-username cloudfreak --admin-password "Zoom@12345678" --size Standard_D4s_v3 --nsg hubRG-NSG -l eastus
+
+==============================================================================================================================================================
