@@ -1,4 +1,4 @@
-#########################################################
+==============================================================================================================================================
 echo "Creating Resource groups & Vnets"
 az group create -l westus -n Red-RG
 
@@ -17,7 +17,7 @@ az network vnet create -g Blue-RG -n Blue-RG-vNET1 --address-prefix 192.168.0.0/
 
 
 
-#########VM Creation ########################
+============================================================================  VM Creation ========================================================
 
 az vm create --resource-group Red-RG --name RedRG-VM --image UbuntuLTS --vnet-name Red-RG-vNET1 \
 --subnet Red-RG-subnet1 --admin-username cloudfreak --admin-password "Zoom@12345678" --size Standard_B1s
@@ -29,5 +29,5 @@ az vm create --resource-group Blue-RG --name BlueRG-VM --image UbuntuLTS --vnet-
 --subnet Blue-RG-subnet1 --admin-username cloudfreak --admin-password "Zoom@12345678" --size Standard_B1s
 
 
-########### Set subscription ######################
+===============================================================  Set subscription ================================================================
 az account set --subscription <subscription-name>
