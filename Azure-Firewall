@@ -1,16 +1,16 @@
-############# Resource Group's Creation #####################
+============================================= Resource Group's Creation====================================================================
 
 az group create -l westus -n HUB-RG
 az group create -l westus -n Proj-01
 az group create -l westus -n Proj-02
 
 
-############### VNET's creation #######################
+============================================ VNET's creation ================================================================================
 az network vnet create -g HUB-RG -n HUB-RG-vNET1 --address-prefix 10.10.0.0/16 --subnet-name HUB-RG-subnet1 --subnet-prefix 10.10.1.0/24
 az network vnet create -g Proj-01 -n Proj-01-vNET1 --address-prefix 172.16.0.0/16 --subnet-name Proj-01-subnet1 --subnet-prefix 172.16.1.0/24
 az network vnet create -g Proj-02 -n Proj-02-vNET1 --address-prefix 172.17.0.0/16 --subnet-name Proj-02-subnet1 --subnet-prefix 172.17.1.0/24
 
-############### Network Security Group & Rules Creation ##########################
+======================================================Network Security Group & Rules Creation ================================================
 
 a0
 
@@ -27,8 +27,7 @@ az network nsg rule create -g Proj-02 --nsg-name Proj-02-NSG -n Proj-02-NSG-RULE
 --destination-port-ranges '*' --access Allow --protocol Tcp --description "Allowing All Traffic  for now"
 
 
-########################VNET Peering Creation ###############################
-
+============================================================ VNET Peering Creation ==================================================================================
 az network vnet peering create -g HUB-RG -n HUB-to-Proj01 --vnet-name HUB-RG-vNET1 \
 --remote-vnet Proj-01-vNET1 --allow-vnet-access
 
@@ -37,7 +36,7 @@ az network vnet peering create -g HUB-RG -n HUB-to-Proj02 --vnet-name HUB-RG-vNE
 
 
 
-#####################VM's Creation###################################
+============================================================================ VM's Creation ====================================================================
 az vm create --resource-group HUB-RG --name HUBRG-VM1 --image UbuntuLTS --vnet-name HUB-RG-vNET1 \
 --subnet HUB-RG-subnet1 --admin-username cloudfreak --admin-password "Zoom@12345678" --size Standard_B1s --nsg HUB-RG-NSG
 
@@ -48,4 +47,4 @@ az vm create --resource-group Proj-01 --name Proj-01-VM1 --image UbuntuLTS --vne
 az vm create --resource-group Proj-02 --name Proj-02-VM1 --image UbuntuLTS --vnet-name Proj-02-vNET1 \
 --subnet Proj-02-subnet1 --admin-username cloudfreak --admin-password "Zoom@12345678" --size Standard_B1s --nsg Proj-02-NSG
 
-###############################################################################################################################
+======================================================================================================================================================================
